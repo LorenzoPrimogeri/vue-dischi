@@ -2,7 +2,7 @@
   <div>
     <div class="text-center py-2">
       <label class="c-white">Seleziona il genere: </label>
-      <select @change="sendGender($event)">
+      <select @change="sendGenre($event)">
         <option value="">all</option>
         <option value="Rock">Rock</option>
         <option value="Pop">Pop</option>
@@ -18,13 +18,13 @@ export default {
   name: "SearchComponent",
   data() {
     return {
-      selectedGender: " ",
+      selectedGenre: " ",
     };
   },
   methods: {
-    sendGender(event) {
-      this.selectedGender = event.target.value;
-      this.$emit("search", this.selectedGender);
+    sendGenre(event) {
+      this.selectedGenre = event.target.value;
+      this.$emit("search", this.selectedGenre);
     },
   },
 };
