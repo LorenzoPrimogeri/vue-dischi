@@ -1,9 +1,8 @@
 <template>
   <div class="container-fluid bg-main">
     <div class="container">
-      <SearchComponent @search="assignArray" />
-
-      <DiscList :discArray="result" />
+      <SearchComponent @search="filteredGenere" />
+      <DiscList :discArray="filteredArray" />
     </div>
   </div>
 </template>
@@ -33,20 +32,19 @@ export default {
         console.log(this.result);
       });
   },
-  /* computed: {
-    assignArray() {
-      return (this.result = this.filteredGenere());
-    },
-  },
-  methods: {
-    filteredGenere() {
-      
+  computed: {
+    filteredArray() {
       const filter = this.result.filter((item) => {
-        return item.genre.includes(gen);
+        return item.genre.includes(this.genereSelezionato);
       });
       return filter;
     },
-  },*/
+  },
+  methods: {
+    filteredGenere(gen) {
+      this.genereSelezionato = gen;
+    },
+  },
 };
 </script>
 
