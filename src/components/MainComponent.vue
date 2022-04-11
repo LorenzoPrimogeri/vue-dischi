@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid bg-main">
     <div class="container">
-      <SearchComponent @search="filteredGener" />
+      <SearchComponent @search="filteredGenere" />
       <div class="row justify-content-between align-content-center gy-4">
         <div
           v-for="(element, index) in result"
@@ -70,11 +70,14 @@ export default {
   methods: {
     filteredGenere(genereSelezionato) {
       console.log(genereSelezionato);
-      // const filtered = this.result.filter((item) => {
-      //   return this.genereSelezionato.filter((item) =>
-      //     item.genre.includes(this.element)
-      //   );
-      // });
+      const filter = this.result.filter((item) => {
+        return item.genre.includes(this.genereSelezionato);
+      });
+
+      return filter.filter((item) => {
+        item.genre.includes(this.genereSelezionato);
+        console.log(filter);
+      });
     },
   },
 };
