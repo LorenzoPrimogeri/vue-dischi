@@ -1,11 +1,20 @@
 <template>
   <div class="container-fluid bg-main">
     <div class="container">
+      <SearchComponent @search="filteredGener" />
       <div class="row justify-content-between align-content-center gy-4">
         <div
           v-for="(element, index) in result"
           :key="index"
-          class="lp-card bg-grey text-center d-flex flex-column justify-content-between align-content-center"
+          class="
+            lp-card
+            bg-grey
+            text-center
+            d-flex
+            flex-column
+            justify-content-between
+            align-content-center
+          "
         >
           <div class="py-3">
             <img
@@ -38,14 +47,18 @@
 <script>
 //https://flynn.boolean.careers/exercises/api/array/music
 import axios from "axios";
+import SearchComponent from "./SearchComponent.vue";
 export default {
   name: "MainComponent",
+  components: {
+    SearchComponent,
+  },
   data() {
     return {
       result: [],
+      genereSelezionato: "",
     };
   },
-
   mounted() {
     axios
       .get("https://flynn.boolean.careers/exercises/api/array/music")
@@ -53,6 +66,16 @@ export default {
         this.result = response.data.response;
         console.log(this.result);
       });
+  },
+  methods: {
+    filteredGenere(genereSelezionato) {
+      console.log(genereSelezionato);
+      // const filtered = this.result.filter((item) => {
+      //   return this.genereSelezionato.filter((item) =>
+      //     item.genre.includes(this.element)
+      //   );
+      // });
+    },
   },
 };
 </script>
@@ -63,7 +86,7 @@ export default {
   height: 420px;
 }
 .container-fluid {
-  height: calc(100vh - 76px);
+  height: calc(100vh - 82px);
 }
 .cardImg {
   width: 100%;
